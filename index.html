@@ -5,170 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NotionAI — Tu experto en Notion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0a;
-  --surface:#111111;
-  --surface2:#1a1a1a;
-  --border:#2a2a2a;
-  --border2:#333;
-  --accent:#ffffff;
-  --accent2:#e8e8e8;
-  --muted:#666;
-  --muted2:#444;
+  --bg:#0d0d0d;
+  --surface:#161616;
+  --surface2:#1e1e1e;
+  --border:#2e2e2e;
+  --border2:#3a3a3a;
   --notion:#2383e2;
-  --notion-light:#4a9eff;
-  --text:#f0f0f0;
-  --text2:#a0a0a0;
+  --notion-light:#5ba4f5;
+  --text:#f5f5f5;
+  --text2:#c0c0c0;
+  --muted:#888;
+  --muted2:#555;
+  --green:#2da44e;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:var(--accent);text-decoration:none}
-.nav-logo-icon{width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center}
-.nav-logo-icon svg{width:18px;height:18px;fill:#0a0a0a}
-.nav-cta{background:#fff;color:#0a0a0a;border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.85}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,13,13,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;text-decoration:none;letter-spacing:-0.02em}
+.nav-logo-icon{width:34px;height:34px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo-icon svg{width:19px;height:19px;fill:#0d0d0d}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-link{font-size:14px;color:var(--text2);text-decoration:none;font-weight:400;transition:color 0.2s}
+.nav-link:hover{color:#fff}
+.nav-cta{background:#fff;color:#0d0d0d;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em}
+.nav-cta:hover{background:#e8e8e8;transform:translateY(-1px)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(35,131,226,0.12) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(35,131,226,0.1);border:1px solid rgba(35,131,226,0.3);color:#4a9eff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;margin-bottom:32px;letter-spacing:0.04em}
-.hero-badge::before{content:'';width:6px;height:6px;background:#4a9eff;border-radius:50%}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(42px,7vw,88px);font-weight:800;line-height:0.95;letter-spacing:-0.03em;color:#fff;margin-bottom:28px;max-width:900px}
-.hero h1 span{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.3)}
-.hero p{font-size:clamp(15px,2vw,18px);color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:48px;font-weight:300}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn-primary{background:#fff;color:#0a0a0a;border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.15)}
-.btn-secondary{background:transparent;color:#fff;border:1px solid var(--border2);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.2s;text-decoration:none}
-.btn-secondary:hover{border-color:#666;background:rgba(255,255,255,0.04)}
-.hero-stats{display:flex;gap:40px;margin-top:64px;flex-wrap:wrap;justify-content:center}
-.stat{text-align:center}
-.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff}
-.stat-label{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:0.04em}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 90px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,rgba(35,131,226,0.15) 0%,transparent 65%);pointer-events:none;z-index:0}
+.hero>*{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(35,131,226,0.12);border:1px solid rgba(91,164,245,0.35);color:#5ba4f5;padding:7px 16px;border-radius:24px;font-size:12.5px;font-weight:600;margin-bottom:36px;letter-spacing:0.05em}
+.hero-badge-dot{width:7px;height:7px;background:#5ba4f5;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(48px,8vw,96px);font-weight:800;line-height:0.92;letter-spacing:-0.04em;color:#ffffff;margin-bottom:12px;max-width:960px}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,0.25)}
+.hero h1 .highlight{color:#5ba4f5}
+.hero-sub{font-size:clamp(16px,2.2vw,20px);color:#c8c8c8;max-width:560px;line-height:1.75;margin:28px auto 52px;font-weight:400}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:72px}
+.btn-primary{background:#ffffff;color:#0d0d0d;border:none;padding:15px 32px;border-radius:10px;font-size:15px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;letter-spacing:0.01em}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,255,255,0.18)}
+.btn-primary svg{width:16px;height:16px}
+.btn-secondary{background:transparent;color:#e0e0e0;border:1px solid rgba(255,255,255,0.2);padding:15px 32px;border-radius:10px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.25s;text-decoration:none}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.06);color:#fff}
+.hero-stats{display:flex;gap:56px;flex-wrap:wrap;justify-content:center;padding-top:52px;border-top:1px solid rgba(255,255,255,0.08);width:100%;max-width:600px}
+.stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#ffffff;letter-spacing:-0.02em}
+.stat-label{font-size:13px;color:#999;margin-top:4px;font-weight:400}
 
 /* FEATURES */
-.features{padding:100px 40px;max-width:1100px;margin:0 auto}
-.section-label{font-size:11px;font-weight:600;letter-spacing:0.12em;color:var(--notion-light);text-transform:uppercase;margin-bottom:16px}
-.section-title{font-family:'Syne',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.1}
-.section-sub{font-size:16px;color:var(--text2);max-width:480px;line-height:1.7;margin-bottom:64px;font-weight:300}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
-.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s}
-.feature-card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.feature-card:hover::before{opacity:1}
-.feature-icon{width:44px;height:44px;background:rgba(35,131,226,0.1);border:1px solid rgba(35,131,226,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px}
-.feature-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:10px}
-.feature-card p{font-size:14px;color:var(--text2);line-height:1.65;font-weight:300}
+.features{padding:110px 48px;max-width:1140px;margin:0 auto}
+.section-eyebrow{font-size:12px;font-weight:700;letter-spacing:0.14em;color:var(--notion-light);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.section-eyebrow::before{content:'';width:24px;height:2px;background:var(--notion-light);border-radius:2px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:800;color:#ffffff;margin-bottom:20px;line-height:1.05;letter-spacing:-0.025em}
+.section-sub{font-size:17px;color:#b8b8b8;max-width:500px;line-height:1.75;margin-bottom:72px;font-weight:400}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all 0.3s;cursor:default}
+.feature-card:hover{border-color:rgba(91,164,245,0.4);transform:translateY(-4px);background:var(--surface2)}
+.feature-icon{width:48px;height:48px;background:rgba(35,131,226,0.12);border:1px solid rgba(91,164,245,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:22px}
+.feature-card h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#ffffff;margin-bottom:12px;letter-spacing:-0.01em}
+.feature-card p{font-size:14.5px;color:#b0b0b0;line-height:1.7;font-weight:400}
 
-/* CHAT SECTION */
-.chat-section{padding:80px 24px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.chat-wrapper{max-width:780px;margin:0 auto}
-.chat-header-section{text-align:center;margin-bottom:48px}
-.chat-container{background:var(--bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;height:560px}
-.chat-topbar{display:flex;align-items:center;gap:10px;padding:16px 20px;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0}
-.chat-topbar-logo{width:30px;height:30px;background:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chat-topbar-logo svg{width:16px;height:16px;fill:#0a0a0a}
-.chat-topbar-info h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;line-height:1}
-.chat-topbar-info p{font-size:11px;color:var(--muted);margin-top:2px}
-.chat-status{display:flex;align-items:center;gap:5px;margin-left:auto;font-size:11px;color:var(--muted)}
-.chat-status-dot{width:6px;height:6px;background:#2da44e;border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+/* CHAT */
+.chat-section{padding:90px 24px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.chat-wrapper{max-width:800px;margin:0 auto}
+.chat-header-section{text-align:center;margin-bottom:52px}
+.chat-container{background:var(--bg);border:1px solid var(--border2);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;height:580px;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
+.chat-topbar{display:flex;align-items:center;gap:12px;padding:18px 22px;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0}
+.chat-topbar-logo{width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-topbar-logo svg{width:17px;height:17px;fill:#0d0d0d}
+.chat-topbar-info h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#ffffff;line-height:1}
+.chat-topbar-info p{font-size:12px;color:#888;margin-top:3px}
+.chat-status{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:12px;color:#aaa;font-weight:500}
+.chat-status-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:statusPulse 2s infinite}
+@keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(45,164,78,0.4)}50%{box-shadow:0 0 0 4px rgba(45,164,78,0)}}
+.chat-messages{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:16px;scroll-behavior:smooth}
 .chat-messages::-webkit-scrollbar{width:3px}
 .chat-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-.msg{display:flex;gap:10px;max-width:88%;animation:fadeUp 0.25s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg{display:flex;gap:10px;max-width:88%;animation:fadeUp 0.22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
 .msg.ai{align-self:flex-start}
-.avatar{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px}
-.avatar.ai-av{background:#fff;color:#0a0a0a}
+.avatar{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+.avatar.ai-av{background:#ffffff;color:#0d0d0d}
 .avatar.user-av{background:var(--notion);color:#fff}
-.bubble{padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.65}
-.msg.user .bubble{background:var(--notion);color:#fff;border-radius:12px 2px 12px 12px}
-.msg.ai .bubble{background:var(--surface2);border:1px solid var(--border);border-radius:2px 12px 12px 12px;color:var(--text)}
-.bubble strong{font-weight:600;color:#fff}
-.msg.user .bubble strong{color:#fff}
-.chips-row{display:flex;flex-wrap:wrap;gap:6px;padding:4px 20px 12px;flex-shrink:0}
-.chip{font-size:11.5px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;white-space:nowrap}
-.chip:hover{border-color:var(--notion);color:var(--notion-light);background:rgba(35,131,226,0.08)}
-.chat-input-row{display:flex;align-items:center;gap:8px;padding:12px 16px 14px;background:var(--surface2);border-top:1px solid var(--border);flex-shrink:0}
-#user-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:13.5px;font-family:'Inter',sans-serif;outline:none;color:var(--text);transition:border-color 0.15s}
-#user-input::placeholder{color:var(--muted)}
-#user-input:focus{border-color:var(--notion)}
-#send-btn{width:36px;height:36px;background:var(--notion);border:none;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s}
-#send-btn:hover{background:var(--notion-light)}
-#send-btn:disabled{opacity:0.3;cursor:not-allowed}
+.bubble{padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.7;font-weight:400}
+.msg.user .bubble{background:var(--notion);color:#ffffff;border-radius:14px 3px 14px 14px}
+.msg.ai .bubble{background:var(--surface2);border:1px solid var(--border);border-radius:3px 14px 14px 14px;color:#e8e8e8}
+.bubble strong{font-weight:700;color:#ffffff}
+.chips-row{display:flex;flex-wrap:wrap;gap:7px;padding:4px 22px 14px;flex-shrink:0}
+.chip{font-size:12px;padding:6px 14px;border-radius:22px;border:1px solid var(--border);background:transparent;color:#c0c0c0;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.18s;white-space:nowrap;font-weight:500}
+.chip:hover{border-color:var(--notion-light);color:var(--notion-light);background:rgba(35,131,226,0.1)}
+.chat-input-row{display:flex;align-items:center;gap:10px;padding:14px 18px 16px;background:var(--surface2);border-top:1px solid var(--border);flex-shrink:0}
+#user-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:11px 16px;font-size:14px;font-family:'Inter',sans-serif;outline:none;color:#f0f0f0;transition:border-color 0.18s;font-weight:400}
+#user-input::placeholder{color:#666}
+#user-input:focus{border-color:var(--notion);background:rgba(35,131,226,0.04)}
+#send-btn{width:38px;height:38px;background:var(--notion);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s}
+#send-btn:hover{background:var(--notion-light);transform:scale(1.05)}
+#send-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 #send-btn svg{width:15px;height:15px;fill:white}
-.typing{display:flex;gap:4px;align-items:center;padding:3px 0}
-.typing span{width:5px;height:5px;background:var(--muted);border-radius:50%;animation:bounce 1.2s infinite}
-.typing span:nth-child(2){animation-delay:0.2s}
-.typing span:nth-child(3){animation-delay:0.4s}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-.chat-powered{text-align:center;font-size:10px;color:var(--muted2);padding-bottom:8px;flex-shrink:0;letter-spacing:0.03em}
+.typing{display:flex;gap:5px;align-items:center;padding:4px 0}
+.typing span{width:6px;height:6px;background:#666;border-radius:50%;animation:bounce 1.3s infinite}
+.typing span:nth-child(2){animation-delay:0.18s}
+.typing span:nth-child(3){animation-delay:0.36s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chat-powered{text-align:center;font-size:11px;color:#444;padding-bottom:10px;flex-shrink:0;letter-spacing:0.04em}
 
-/* HOW IT WORKS */
-.how{padding:100px 40px;max-width:1100px;margin:0 auto}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:64px}
-.step{position:relative;padding:32px 28px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
-.step-num{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(255,255,255,0.06);line-height:1;margin-bottom:20px}
-.step h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:10px}
-.step p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300}
+/* HOW */
+.how{padding:110px 48px;max-width:1140px;margin:0 auto}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:72px}
+.step{padding:36px 30px;background:var(--surface);border:1px solid var(--border);border-radius:18px;position:relative;overflow:hidden}
+.step::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--notion),var(--notion-light));opacity:0;transition:opacity 0.3s}
+.step:hover::after{opacity:1}
+.step-num{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:24px;letter-spacing:-0.04em}
+.step h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#ffffff;margin-bottom:12px}
+.step p{font-size:14.5px;color:#b0b0b0;line-height:1.7;font-weight:400}
 
-/* CTA FINAL */
-.cta-section{padding:100px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(35,131,226,0.1) 0%,transparent 70%);pointer-events:none}
-.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,60px);font-weight:800;color:#fff;margin-bottom:20px;line-height:1.05}
-.cta-section p{font-size:17px;color:var(--text2);margin-bottom:40px;font-weight:300;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7}
+/* PRICING HINT */
+.pricing-hint{padding:80px 48px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pricing-hint h2{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:800;color:#ffffff;margin-bottom:16px;letter-spacing:-0.025em}
+.pricing-hint p{font-size:17px;color:#b8b8b8;margin-bottom:40px;font-weight:400;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.price-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:#ffffff;letter-spacing:-0.04em;margin-bottom:8px}
+.price-tag span{font-size:22px;font-weight:500;color:#888;vertical-align:super;margin-right:2px}
+.price-period{font-size:14px;color:#777;margin-bottom:36px}
 
-/* FOOTER */
-footer{padding:32px 40px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
-footer p{font-size:12px;color:var(--muted)}
+/* CTA */
+.cta-section{padding:110px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(35,131,226,0.12) 0%,transparent 65%);pointer-events:none}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(36px,5.5vw,68px);font-weight:800;color:#ffffff;margin-bottom:22px;line-height:1.0;letter-spacing:-0.03em;position:relative}
+.cta-section p{font-size:18px;color:#b8b8b8;margin-bottom:44px;font-weight:400;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.75;position:relative}
 
-/* API KEY MODAL */
-#key-modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:999;padding:24px;backdrop-filter:blur(8px)}
-#key-box{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:36px;width:100%;max-width:440px}
-#key-box h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:8px}
-#key-box p{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6;font-weight:300}
-#key-input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;color:var(--text);margin-bottom:14px;transition:border-color 0.2s}
-#key-input:focus{border-color:var(--notion)}
-#key-input::placeholder{color:var(--muted)}
-#key-btn{width:100%;background:#fff;color:#0a0a0a;border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:opacity 0.2s}
-#key-btn:hover{opacity:0.85}
-.key-note{font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
-.key-note a{color:var(--notion-light);text-decoration:none}
+footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer p{font-size:13px;color:#666;font-weight:400}
 
-@media(max-width:600px){
+@media(max-width:640px){
   nav{padding:14px 20px}
-  .hero h1{font-size:38px}
-  .features,.how{padding:60px 20px}
-  .cta-section{padding:60px 20px}
-  footer{padding:24px 20px;flex-direction:column;gap:8px;text-align:center}
+  .nav-link{display:none}
+  .features,.how,.cta-section{padding:70px 20px}
+  .pricing-hint{padding:60px 20px}
+  footer{padding:28px 20px;flex-direction:column;text-align:center}
+  .hero-stats{gap:32px}
 }
 </style>
 </head>
 <body>
 
-<!-- API KEY MODAL -->
-<div id="key-modal">
-  <div id="key-box">
-    <div style="width:40px;height:40px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="#0a0a0a"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933z"/></svg>
-    </div>
-    <h2>Activa tu asistente</h2>
-    <p>Ingresa tu API Key de Anthropic para empezar. Se guarda solo en tu sesión del navegador y nunca se envía a ningún servidor externo.</p>
-    <input type="password" id="key-input" placeholder="sk-ant-api103-..." />
-    <button id="key-btn" onclick="saveKey()">Activar ahora →</button>
-    <p class="key-note">¿No tienes una? <a href="https://console.anthropic.com/settings/keys" target="_blank">Obtén tu API Key aquí →</a></p>
-  </div>
-</div>
-
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">
@@ -176,71 +161,54 @@ footer p{font-size:12px;color:var(--muted)}
     </div>
     NotionAI
   </a>
-  <button class="nav-cta" onclick="scrollToChat()">Probar gratis →</button>
+  <div class="nav-right">
+    <a class="nav-link" href="#features">Funciones</a>
+    <a class="nav-link" href="#chat">Demo</a>
+    <button class="nav-cta" onclick="scrollToChat()">Probar gratis →</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Powered by Claude AI</div>
-  <h1>Domina Notion<br><span>sin límites</span></h1>
-  <p>Tu asistente experto en Notion disponible 24/7. Resuelve dudas, aprende fórmulas, organiza tu workspace y conecta herramientas en segundos.</p>
+  <div class="hero-badge"><div class="hero-badge-dot"></div>Powered by Claude AI · Disponible 24/7</div>
+  <h1>Domina <span class="highlight">Notion</span><br>como un <span class="outline">experto</span></h1>
+  <p class="hero-sub">El asistente con IA que resuelve todas tus dudas sobre Notion al instante. Fórmulas, bases de datos, integraciones y más — en español, en segundos.</p>
   <div class="hero-btns">
-    <button class="btn-primary" onclick="scrollToChat()">Hablar con el asistente →</button>
-    <a class="btn-secondary" href="#features">Ver funciones</a>
+    <button class="btn-primary" onclick="scrollToChat()">
+      Empezar ahora — es gratis
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <a class="btn-secondary" href="#features">Ver qué puede hacer</a>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">En español</div></div>
-    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Disponible</div></div>
-    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Consultas</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Siempre disponible</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Sin límite de preguntas</div></div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
-  <div class="section-label">Funcionalidades</div>
-  <h2 class="section-title">Todo lo que necesitas<br>para ser un pro en Notion</h2>
-  <p class="section-sub">Desde bases de datos complejas hasta automatizaciones. El asistente tiene respuesta para todo.</p>
+  <div class="section-eyebrow">Funcionalidades</div>
+  <h2 class="section-title">Todo lo que necesitas<br>para dominar Notion</h2>
+  <p class="section-sub">Desde bases de datos complejas hasta automatizaciones. Respuestas claras, paso a paso, sin rodeos.</p>
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🗄️</div>
-      <h3>Bases de datos avanzadas</h3>
-      <p>Aprende a crear relaciones, rollups y vistas filtradas que transformen cómo gestionas tu información.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🧮</div>
-      <h3>Fórmulas paso a paso</h3>
-      <p>Desde fórmulas básicas hasta cálculos complejos con fechas, condicionales y funciones anidadas.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔗</div>
-      <h3>Integraciones externas</h3>
-      <p>Conecta Notion con Google Calendar, Slack, Zapier y más. El asistente te guía en cada integración.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Atajos y productividad</h3>
-      <p>Descubre los atajos de teclado, comandos slash y trucos que multiplicarán tu velocidad de trabajo.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏗️</div>
-      <h3>Estructura tu workspace</h3>
-      <p>Aprende a organizar páginas, jerarquías y sistemas de trabajo que escalen con tu equipo.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📋</div>
-      <h3>Plantillas personalizadas</h3>
-      <p>Obtén ejemplos de plantillas para proyectos, CRMs, gestión de tareas y cualquier caso de uso.</p>
-    </div>
+    <div class="feature-card"><div class="feature-icon">🗄️</div><h3>Bases de datos avanzadas</h3><p>Relaciones, rollups, vistas filtradas y propiedades personalizadas. Aprende a estructurar cualquier proyecto.</p></div>
+    <div class="feature-card"><div class="feature-icon">🧮</div><h3>Fórmulas paso a paso</h3><p>Desde cálculos básicos hasta fórmulas complejas con fechas, condicionales y funciones anidadas explicadas con ejemplos.</p></div>
+    <div class="feature-card"><div class="feature-icon">🔗</div><h3>Integraciones externas</h3><p>Conecta Notion con Google Calendar, Slack, Zapier, Make y más. Guía completa para cada integración.</p></div>
+    <div class="feature-card"><div class="feature-icon">⚡</div><h3>Atajos y productividad</h3><p>Comandos slash, atajos de teclado y trucos avanzados que nadie te contó y que cambian cómo trabajas.</p></div>
+    <div class="feature-card"><div class="feature-icon">🏗️</div><h3>Diseña tu workspace</h3><p>Sistemas de organización para equipos o uso personal. Jerarquías claras, páginas vinculadas y flujos eficientes.</p></div>
+    <div class="feature-card"><div class="feature-icon">📋</div><h3>Plantillas personalizadas</h3><p>CRMs, gestores de tareas, diarios, wikis de equipo. Obtén estructuras listas para usar en minutos.</p></div>
   </div>
 </section>
 
-<!-- CHAT -->
+<!-- CHAT DEMO -->
 <section class="chat-section" id="chat">
   <div class="chat-wrapper">
     <div class="chat-header-section">
-      <div class="section-label" style="text-align:center">Pruébalo ahora</div>
-      <h2 class="section-title" style="text-align:center;font-size:clamp(26px,4vw,40px)">Pregunta lo que quieras</h2>
-      <p style="text-align:center;color:var(--text2);font-size:15px;font-weight:300;margin-top:12px">Respuestas reales, en español, en segundos.</p>
+      <div class="section-eyebrow" style="justify-content:center">Demo en vivo</div>
+      <h2 class="section-title" style="text-align:center;font-size:clamp(28px,4vw,44px)">Pregúntale lo que quieras</h2>
+      <p style="text-align:center;color:#b0b0b0;font-size:16px;font-weight:400;margin-top:14px;line-height:1.7">Respuestas reales, en español, sin límites.</p>
     </div>
     <div class="chat-container">
       <div class="chat-topbar">
@@ -248,148 +216,104 @@ footer p{font-size:12px;color:var(--muted)}
           <svg viewBox="0 0 24 24"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933z"/></svg>
         </div>
         <div class="chat-topbar-info">
-          <h3>Asistente Notion</h3>
-          <p>Experto en organización y productividad</p>
+          <h3>Asistente NotionAI</h3>
+          <p>Experto en Notion · Responde en segundos</p>
         </div>
-        <div class="chat-status">
-          <div class="chat-status-dot"></div>
-          En línea
-        </div>
+        <div class="chat-status"><div class="chat-status-dot"></div>En línea</div>
       </div>
-
       <div class="chat-messages" id="messages">
         <div class="msg ai">
           <div class="avatar ai-av">N</div>
-          <div class="bubble">👋 <strong>¡Hola! Soy tu asistente experto en Notion.</strong><br><br>Estoy aquí para ayudarte a dominar la plataforma. Puedo ayudarte con bases de datos, fórmulas, integraciones, organización y mucho más.<br><br><strong>¿Con qué empezamos hoy?</strong></div>
+          <div class="bubble">👋 <strong>¡Hola! Soy tu asistente experto en Notion.</strong><br><br>Puedo ayudarte con bases de datos, fórmulas, integraciones, atajos, plantillas y todo lo que necesites para dominar Notion.<br><br><strong>¿Qué quieres aprender hoy?</strong></div>
         </div>
       </div>
-
       <div class="chips-row" id="chips">
         <button class="chip" onclick="sendChip('¿Cómo conecto dos bases de datos en Notion?')">🔗 Relacionar bases de datos</button>
-        <button class="chip" onclick="sendChip('¿Cómo creo una fórmula para calcular fechas?')">🧮 Fórmulas de fechas</button>
-        <button class="chip" onclick="sendChip('¿Cómo organizo mi workspace para un equipo?')">🗂️ Workspace en equipo</button>
+        <button class="chip" onclick="sendChip('¿Cómo creo una fórmula para calcular días entre fechas?')">🧮 Fórmulas de fechas</button>
+        <button class="chip" onclick="sendChip('¿Cómo organizo mi workspace para trabajar en equipo?')">🗂️ Workspace en equipo</button>
         <button class="chip" onclick="sendChip('¿Cómo integro Notion con Google Calendar?')">📅 Google Calendar</button>
       </div>
-
       <div class="chat-input-row">
-        <input type="text" id="user-input" placeholder="Pregunta sobre Notion..." />
+        <input type="text" id="user-input" placeholder="Escribe tu pregunta sobre Notion..." />
         <button id="send-btn" onclick="sendMsg()">
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
-      <div class="chat-powered">Powered by Claude · NotionAI</div>
+      <div class="chat-powered">Powered by Claude AI · NotionAI</div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- HOW -->
 <section class="how">
-  <div class="section-label">Cómo funciona</div>
-  <h2 class="section-title">Simple. Rápido. Efectivo.</h2>
+  <div class="section-eyebrow">Cómo funciona</div>
+  <h2 class="section-title">Tan simple como<br>hacer una pregunta</h2>
   <div class="steps">
-    <div class="step"><div class="step-num">01</div><h3>Haz tu pregunta</h3><p>Escribe cualquier duda sobre Notion, desde lo más básico hasta configuraciones avanzadas.</p></div>
-    <div class="step"><div class="step-num">02</div><h3>Recibe la solución</h3><p>El asistente analiza tu pregunta y te da pasos concretos, ejemplos y mejores prácticas.</p></div>
-    <div class="step"><div class="step-num">03</div><h3>Aplica y mejora</h3><p>Implementa lo aprendido en tu workspace y regresa cuando necesites profundizar más.</p></div>
+    <div class="step"><div class="step-num">01</div><h3>Escribe tu duda</h3><p>Cualquier pregunta sobre Notion, desde configurar una base de datos hasta crear fórmulas avanzadas.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>Recibe la solución</h3><p>Pasos concretos, ejemplos reales y mejores prácticas. Sin respuestas genéricas ni tecnicismos innecesarios.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Aplica y domina</h3><p>Implementa lo aprendido de inmediato. Vuelve cuando quieras para profundizar o resolver nuevas dudas.</p></div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Empieza a dominar<br>Notion hoy</h2>
-  <p>Sin complicaciones. Solo pregunta y obtén respuestas claras en segundos.</p>
-  <button class="btn-primary" onclick="scrollToChat()">Hablar con el asistente →</button>
+<!-- PRICING HINT -->
+<section class="pricing-hint">
+  <h2>Acceso completo.<br>Sin complicaciones.</h2>
+  <p>Un solo pago. Acceso ilimitado al asistente experto en Notion que siempre quisiste tener.</p>
+  <div class="price-tag"><span>$</span>9</div>
+  <div class="price-period">/ mes · Cancela cuando quieras</div>
+  <br><br>
+  <button class="btn-primary" onclick="scrollToChat()" style="font-size:16px;padding:16px 36px">
+    Probar gratis primero →
+  </button>
 </section>
 
-<!-- FOOTER -->
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>Deja de buscar<br>en YouTube y foros</h2>
+  <p>Tienes un experto en Notion disponible 24/7, en español, que responde exactamente lo que necesitas.</p>
+  <button class="btn-primary" onclick="scrollToChat()" style="font-size:16px;padding:16px 36px">
+    Hablar con el asistente →
+  </button>
+</section>
+
 <footer>
-  <p>© 2026 NotionAI · Powered by Claude</p>
-  <p style="font-size:11px;color:var(--muted2)">No afiliado con Notion Labs, Inc.</p>
+  <p>© 2026 NotionAI · Powered by Claude AI</p>
+  <p style="font-size:12px;color:#444">No afiliado con Notion Labs, Inc.</p>
 </footer>
 
 <script>
-const SYSTEM_PROMPT = `Eres un experto en Notion con conocimiento profundo de todas sus funcionalidades, integraciones y mejores prácticas. Ayudas a usuarios intermedios y avanzados a optimizar su uso de Notion de manera profesional, cercana y educativa.
+let history=[];
+let isLoading=false;
+const messagesEl=document.getElementById('messages');
+const inputEl=document.getElementById('user-input');
+const sendBtn=document.getElementById('send-btn');
+const chipsEl=document.getElementById('chips');
 
-Tu objetivo principal es resolver dudas, proponer soluciones prácticas y enseñar a sacar el máximo provecho de Notion.
-
-TAREAS PRINCIPALES:
-- Responder preguntas sobre funciones, configuraciones y uso de Notion
-- Proporcionar soluciones paso a paso a problemas específicos
-- Recomendar mejores prácticas para organizar información, bases de datos y proyectos
-- Sugerir tips, atajos y métodos eficientes dentro de Notion
-- Guiar en integraciones con herramientas externas (Google Calendar, Slack, Zapier, etc.)
-- Generar ejemplos de fórmulas, bases de datos interconectadas y plantillas
-
-ESTILO Y TONO:
-- Tono: Profesional cercano, amigable y educativo
-- Tratamiento: "Tú" (informal)
-- Idioma: Español siempre
-- Longitud: Respuestas de 200-400 palabras máximo
-
-FORMATO DE RESPUESTA:
-📌 **Resumen:** [1-2 líneas con la respuesta clave]
-
-🔧 **Pasos / Solución:**
-1. Paso uno
-2. Paso dos...
-
-💡 **Tip adicional** (si aplica): consejo breve
-
-➡️ **Siguiente paso:** [llamado a acción o pregunta de seguimiento]
-
-RESTRICCIONES:
-- Solo responde sobre Notion y productividad relacionada
-- No des consejos legales, médicos ni financieros
-- Responde SIEMPRE en español`;
-
-let API_KEY = '';
-let history = [];
-let isLoading = false;
-
-const messagesEl = document.getElementById('messages');
-const inputEl = document.getElementById('user-input');
-const sendBtn = document.getElementById('send-btn');
-const chipsEl = document.getElementById('chips');
-const modal = document.getElementById('key-modal');
-const keyInput = document.getElementById('key-input');
-
-const saved = sessionStorage.getItem('notion_api_key');
-if(saved){ API_KEY = saved; modal.style.display = 'none'; }
-
-keyInput.addEventListener('keydown', e => { if(e.key==='Enter') saveKey(); });
-inputEl.addEventListener('keydown', e => { if(e.key==='Enter') sendMsg(); });
-
-function saveKey(){
-  const val = keyInput.value.trim();
-  if(!val.startsWith('sk-ant-')){ keyInput.style.borderColor='#e74c3c'; keyInput.placeholder='Debe empezar con sk-ant-...'; return; }
-  API_KEY = val;
-  sessionStorage.setItem('notion_api_key', val);
-  modal.style.display = 'none';
-  inputEl.focus();
-}
+inputEl.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
 
 function scrollToChat(){
   document.getElementById('chat').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>inputEl.focus(), 600);
+  setTimeout(()=>inputEl.focus(),700);
 }
 
-function addMsg(role, html){
-  const isUser = role==='user';
-  const div = document.createElement('div');
-  div.className = 'msg '+(isUser?'user':'ai');
-  div.innerHTML = `<div class="avatar ${isUser?'user-av':'ai-av'}">${isUser?'Tú':'N'}</div><div class="bubble">${html}</div>`;
+function addMsg(role,html){
+  const isUser=role==='user';
+  const div=document.createElement('div');
+  div.className='msg '+(isUser?'user':'ai');
+  div.innerHTML=`<div class="avatar ${isUser?'user-av':'ai-av'}">${isUser?'Tú':'N'}</div><div class="bubble">${html}</div>`;
   messagesEl.appendChild(div);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+  messagesEl.scrollTop=messagesEl.scrollHeight;
 }
 
 function showTyping(){
-  const div = document.createElement('div');
-  div.className='msg ai'; div.id='typing';
+  const div=document.createElement('div');
+  div.className='msg ai';div.id='typing';
   div.innerHTML=`<div class="avatar ai-av">N</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
   messagesEl.appendChild(div);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+  messagesEl.scrollTop=messagesEl.scrollHeight;
 }
 
-function removeTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
 
 function formatText(text){
   return text
@@ -399,41 +323,36 @@ function formatText(text){
 }
 
 async function sendMsg(){
-  const text = inputEl.value.trim();
-  if(!text||isLoading) return;
+  const text=inputEl.value.trim();
+  if(!text||isLoading)return;
   inputEl.value='';
   chipsEl.style.display='none';
-  isLoading=true; sendBtn.disabled=true;
-  addMsg('user', text);
+  isLoading=true;sendBtn.disabled=true;
+  addMsg('user',text);
   history.push({role:'user',content:text});
   showTyping();
   try{
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch('/api/chat',{
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':API_KEY,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1024,system:SYSTEM_PROMPT,messages:history})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history})
     });
-    const data = await resp.json();
+    const data=await resp.json();
     removeTyping();
-    if(data.error){ addMsg('ai',`⚠️ Error: ${data.error.message}`); }
+    if(data.error){addMsg('ai',`⚠️ Error: ${data.error.message||data.error}`);}
     else{
-      const reply = data.content?.[0]?.text||'Sin respuesta.';
+      const reply=data.content?.[0]?.text||'Sin respuesta.';
       history.push({role:'assistant',content:reply});
-      addMsg('ai', formatText(reply));
+      addMsg('ai',formatText(reply));
     }
   }catch(e){
     removeTyping();
-    addMsg('ai','⚠️ Error de conexión. Verifica tu API Key e intenta de nuevo.');
+    addMsg('ai','⚠️ Error de conexión. Intenta de nuevo.');
   }
-  isLoading=false; sendBtn.disabled=false; inputEl.focus();
+  isLoading=false;sendBtn.disabled=false;inputEl.focus();
 }
 
-function sendChip(text){ inputEl.value=text; scrollToChat(); setTimeout(sendMsg,400); }
+function sendChip(text){inputEl.value=text;scrollToChat();setTimeout(sendMsg,600);}
 </script>
 </body>
 </html>
